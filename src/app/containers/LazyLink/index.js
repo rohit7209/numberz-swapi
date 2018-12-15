@@ -75,7 +75,16 @@ class LazyLink extends React.Component {
   }
 }
 
-LazyLink.propTypes = {};
+LazyLink.propTypes = {
+  lazyInfo: PropTypes.object.isRequired,
+  requestDetails: PropTypes.object.isRequired,
+  list: PropTypes.array,
+  type: PropTypes.string.isRequired,
+};
+
+LazyLink.defaultProps = {
+  list: [],
+};
 
 const mapStateToProps = (state) => ({
   lazyInfo: state.LazyLinkReducer,

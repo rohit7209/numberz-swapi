@@ -88,6 +88,7 @@ class PeopleMoreCode extends React.Component {
 
   render() {
     const details = this.props.details;
+    console.log('props:', details);
     return (
       <Wrapper>
         <BasicInfo style={{ color: CONSTANTS.color.people }}>

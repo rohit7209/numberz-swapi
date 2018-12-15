@@ -15,6 +15,7 @@ export const MoreInfoReducer = (state = defaultState, action) => {
     case MS_REQUEST_MORE_DETAILS:
       return {
         ...state,
+        details: null,
         requesting: true,
       };
     case MS_REQUEST_MORE_DETAILS_DONE:

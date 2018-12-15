@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import CloseBtn from './../../components/CloseBtn';
 import PeopleMoreCard from './../../components/PeopleMoreCard';
-import { requestMoreDetails } from './actions';
-import { reset } from './../LazyLink/actions';
+import PlanetsMoreCard from './../../components/PlanetsMoreCard';
+import VehiclesMoreCard from './../../components/VehiclesMoreCard';
+import { requestMoreDetails, reset } from './actions';
+// import { reset } from './../LazyLink/actions';
 import Loader from '../../components/Loader';
 import CONSTANTS from './../../utils/constants';
 
@@ -47,6 +49,8 @@ const Error = styled.div`
 const MoreInfoComponent = (props) => {
   switch (props.type.toUpperCase()) {
     case 'PEOPLE': return <PeopleMoreCard {...props} />;
+    case 'PLANETS': return <PlanetsMoreCard {...props} />;
+    case 'VEHICLES': return <VehiclesMoreCard {...props} />;
     default: return <div />;
   }
 };
@@ -57,6 +61,7 @@ class MoreInfoScreen extends React.Component {
     super(props);
     this.state = {
       showCard: false,
+      loading: true,
     };
   }
 
@@ -65,6 +70,7 @@ class MoreInfoScreen extends React.Component {
       this.setState({ showCard: true });
     }, 100);
 
+    // this.props.reset();
     this.props.requestDetails({
       type: this.props.type,
       id: this.props.url.split('/').reverse()[1],
@@ -72,14 +78,22 @@ class MoreInfoScreen extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ loading: nextProps.moreInfo.requesting });
-  }
+    this.setState({
+      loading: nextProps.moreInfo.requesting,
+      details: nextProps.moreInfo.details,
+    });
 
-  componentWillUnmount() {
-    this.props.reset();
+    if (this.props.url !== nextProps.url) {
+      this.setState({ details: null, loading: true });
+      nextProps.requestDetails({
+        type: nextProps.type,
+        id: nextProps.url.split('/').reverse()[1],
+      });
+    }
   }
 
   hideCard = () => {
+    // this.props.reset();
     this.setState({ showCard: false });
     setTimeout(() => {
       this.props.hide();
@@ -92,14 +106,13 @@ class MoreInfoScreen extends React.Component {
         <Card show={this.state.showCard}>
           <CloseBtn onClick={this.hideCard} />
           {/* <MoreInfoComponent type={this.props.type} details={this.props.moreInfo.details} /> */}
-          {(!this.state.loading && this.props.moreInfo.details) ?
-            this.props.moreInfo.details.error ?
+          {(!this.state.loading && this.state.details) ?
+            this.state.details.error ?
               <Error>Not Found :(</Error>
               :
-              <MoreInfoComponent type={this.props.type} details={this.props.moreInfo.details} />
+              <MoreInfoComponent type={this.props.type} details={this.state.details} />
             : <Loader style={{ top: 'calc(50% - 15px', position: 'absolute', width: '100%' }} />
           }
-
         </Card>
       </Wrapper>
     );

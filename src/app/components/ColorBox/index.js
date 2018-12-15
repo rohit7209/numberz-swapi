@@ -41,8 +41,7 @@ class ColorBox extends React.Component {
 
   onChange = () => this.state.active ? this.setState({ checked: !this.state.checked }, () => this.props.onChange(this.state.checked)) : null;
 
-  render() {
-    // console.log(this.props);
+  render() {    
     return (
       <Box
         onClick={this.onChange}

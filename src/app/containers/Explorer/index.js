@@ -6,16 +6,21 @@ import styled from 'styled-components';
 import Utils from './../../utils';
 import { requestTypeList } from './actions';
 import { reset } from './../Filters/actions';
+import { reset as resetMoreInfo } from './../MoreInfoScreen/actions';
 import Filters from './../Filters';
 import Hr from './../../components/Hr';
 import PeopleCard from './../../components/PeopleCard';
+import PlanetsCard from './../../components/PlanetsCard';
+import VehiclesCard from './../../components/VehiclesCard';
 import Button from './../../components/Button';
 import Loader from './../../components/Loader';
 import MoreInfoScreen from './../../containers/MoreInfoScreen';
 
 const Card = (props) => {
   switch (props.type.toUpperCase()) {
-    case 'PEOPLE': return <PeopleCard details={props.details} displayMoreInfo={props.displayMoreInfo} />;
+    case 'PEOPLE': return <PeopleCard {...props} />;
+    case 'PLANETS': return <PlanetsCard {...props} />;
+    case 'VEHICLES': return <VehiclesCard {...props} />;
     default: return <div />;
   }
 };
@@ -114,6 +119,7 @@ class Explorer extends React.Component {
   }
 
   requestInfo = (props = this.props) => {
+    // this.props.resetMoreInfo();
     this.setState({
       filterMap: {},
       list: [],
@@ -145,6 +151,7 @@ class Explorer extends React.Component {
   hideMoreInfoScreen = () => this.setState({ moreInfoUrl: null })
 
   render() {
+    // console.log('list::', this.props, this.state);
     return (
       <Wrapper>
         <Col1>
@@ -160,7 +167,7 @@ class Explorer extends React.Component {
             </div>
           </div>
           <Hr />
-          {!this.props.explorer.requesting && this.state.list ?
+          {!this.props.explorer.requesting && this.state.list.length > 0 ?
             <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
               {this.state.list.map(item => <Card key={item.url} displayMoreInfo={this.displayMoreInfoScreen} details={item} type={this.state.type} />)}
             </div> : <Loader />
@@ -183,6 +190,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   requestTypeList: (payload) => dispatch(requestTypeList(payload)),
   resetFilters: (payload) => dispatch(reset(payload)),
+  resetMoreInfo: (payload) => dispatch(resetMoreInfo(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Explorer);

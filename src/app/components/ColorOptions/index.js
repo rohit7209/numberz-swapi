@@ -25,8 +25,6 @@ class ColorOptions extends React.Component {
   onChange = (color, value) => this.setState({ [color]: value }, () => this.props.onChange(Object.keys(this.state).filter(key => this.state[key])));
 
   render() {
-    // console.log(this.props.text, this.props.list);
-
     return (
       <Wrapper>
         <Text>{this.props.text}</Text>

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import CONSTANTS from './../../utils/constants';
 import ColorBox from './../ColorBox';
-import MoreInfoScreen from './../../components/MoreInfoScreen';
 
 const Wrapper = styled.div`
   width: 350px;
@@ -93,6 +92,8 @@ class PeopleCard extends React.Component {
 
   render() {
     const details = this.props.details;
+
+    // console.log('der::', details);
 
     return (
       <Wrapper>
