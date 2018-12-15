@@ -1,6 +1,14 @@
 import React from 'react';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import Layout from './containers/Layout';
+import HomePage from './containers/HomePage';
+import Explorer from './containers/Explorer';
+
+const About = () => <div>I am about <Link to="/topics">About</Link></div>;
+const Topics = () => <div>I am topics <Link to="/">About</Link></div>;
+
 
 class App extends React.Component {
   constructor(props) {
@@ -12,20 +20,18 @@ class App extends React.Component {
     this.props.onRequestDog();
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('next::', nextProps);
-    this.setState({ image: nextProps.state.AppReducer.message });
-  }
-
   render() {
-    console.log(this.props);
     return (
-      <div>
-        abcd
-        <button onClick={this.submit}>submit</button>
-        <div>abcd</div>
-        <img src={this.state.image} />
-      </div>
+      <Layout>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/explorer/:type" component={Explorer} />
+            <Route path="/about" component={About} />
+            <Route path="/topics" component={Topics} />
+          </Switch>
+        </Router>
+      </Layout>
     );
   }
 }
