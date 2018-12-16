@@ -12,6 +12,9 @@ import Hr from './../../components/Hr';
 import PeopleCard from './../../components/PeopleCard';
 import PlanetsCard from './../../components/PlanetsCard';
 import VehiclesCard from './../../components/VehiclesCard';
+import SpaceshipsCard from './../../components/SpaceshipsCard';
+import FilmsCard from './../../components/FilmsCard';
+import SpeciesCard from './../../components/SpeciesCard';
 import Button from './../../components/Button';
 import Loader from './../../components/Loader';
 import MoreInfoScreen from './../../containers/MoreInfoScreen';
@@ -21,6 +24,9 @@ const Card = (props) => {
     case 'PEOPLE': return <PeopleCard {...props} />;
     case 'PLANETS': return <PlanetsCard {...props} />;
     case 'VEHICLES': return <VehiclesCard {...props} />;
+    case 'STARSHIPS': return <SpaceshipsCard {...props} />;
+    case 'FILMS': return <FilmsCard {...props} />;
+    case 'SPECIES': return <SpeciesCard {...props} />;
     default: return <div />;
   }
 };

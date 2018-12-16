@@ -45,6 +45,11 @@ const Wrapper = styled.div`
     padding: 10px;
     text-transform: uppercase;
   }
+  &>div:last-child{
+    max-height: 70px;
+    // border: 1px solid red;
+    overflow: auto;  
+  }
 `;
 
 class LazyLink extends React.Component {
@@ -66,10 +71,12 @@ class LazyLink extends React.Component {
     return (
       <Wrapper>
         <div>{this.props.type}</div>
-        {details ? details.map(item => <Btn key={item.data.url} title={item.data.name || item.data.title} to={`/explorer/${this.props.type}/?url=${item.data.url}`} color={CONSTANTS.color[this.props.type]}>
-          {item.data.name || item.data.title}
-        </Btn>) : <Loader sm />}
-        {details && details.length === 0 ? <div>NA</div> : null}
+        <div>
+          {details ? details.map(item => <Btn key={item.data.url} title={item.data.name || item.data.title} to={`/explorer/${this.props.type}/?url=${item.data.url}`} color={CONSTANTS.color[this.props.type]}>
+            {item.data.name || item.data.title}
+          </Btn>) : <Loader sm />}
+          {details && details.length === 0 ? <div>NA</div> : null}
+        </div>
       </Wrapper>
     );
   }
@@ -77,7 +84,7 @@ class LazyLink extends React.Component {
 
 LazyLink.propTypes = {
   lazyInfo: PropTypes.object.isRequired,
-  requestDetails: PropTypes.object.isRequired,
+  requestDetails: PropTypes.func.isRequired,
   list: PropTypes.array,
   type: PropTypes.string.isRequired,
 };

@@ -6,6 +6,9 @@ import CloseBtn from './../../components/CloseBtn';
 import PeopleMoreCard from './../../components/PeopleMoreCard';
 import PlanetsMoreCard from './../../components/PlanetsMoreCard';
 import VehiclesMoreCard from './../../components/VehiclesMoreCard';
+import SpaceshipsMoreCard from './../../components/SpaceshipsMoreCard';
+import FilmsMoreCard from './../../components/FilmsMoreCard';
+import SpeciesMoreCard from './../../components/SpeciesMoreCard';
 import { requestMoreDetails, reset } from './actions';
 // import { reset } from './../LazyLink/actions';
 import Loader from '../../components/Loader';
@@ -51,6 +54,9 @@ const MoreInfoComponent = (props) => {
     case 'PEOPLE': return <PeopleMoreCard {...props} />;
     case 'PLANETS': return <PlanetsMoreCard {...props} />;
     case 'VEHICLES': return <VehiclesMoreCard {...props} />;
+    case 'STARSHIPS': return <SpaceshipsMoreCard {...props} />;
+    case 'FILMS': return <FilmsMoreCard {...props} />;
+    case 'SPECIES': return <SpeciesMoreCard {...props} />;
     default: return <div />;
   }
 };

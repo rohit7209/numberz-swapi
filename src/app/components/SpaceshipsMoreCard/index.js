@@ -30,7 +30,7 @@ const InfoBar2 = styled.div`
 
 const Footer = styled.div`
   height: 20px;
-  background: ${CONSTANTS.color.vehicles};
+  background: ${CONSTANTS.color.starships};
   width: 100%;
   position: absolute;
   bottom: 0px;
@@ -86,7 +86,7 @@ const Block = styled.div`
   }
 `;
 
-class VehiclesMoreCard extends React.Component {
+class SpaceshipsMoreCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -96,9 +96,9 @@ class VehiclesMoreCard extends React.Component {
     const details = this.props.details;
     return (
       <Wrapper>
-        <BasicInfo style={{ color: CONSTANTS.color.vehicles }}>
+        <BasicInfo style={{ color: CONSTANTS.color.starships }}>
           {details.name}<br />
-          <span><i className="fa fa-inr" /> {details.cost_in_credits}, {details.vehicle_class}</span><br />
+          <span><i className="fa fa-inr" /> {details.cost_in_credits}, {details.starship_class}</span><br />
           <span><i className="fa fa-industry" /> {details.manufacturer}</span>
         </BasicInfo>
 
@@ -117,6 +117,8 @@ class VehiclesMoreCard extends React.Component {
           </tbody>
         </Table>
 
+        <div style={{ padding: '0px 50px', color: CONSTANTS.color.starships }}><strong>MGLT: {details.MGLT}</strong></div>
+
         <InfoBar2>
           <LazyLink list={details.pilots} type="people" />
           <Block><div>CREW</div><span>{details.crew}</span></Block>
@@ -129,6 +131,6 @@ class VehiclesMoreCard extends React.Component {
   }
 }
 
-VehiclesMoreCard.propTypes = {};
+SpaceshipsMoreCard.propTypes = {};
 
-export default VehiclesMoreCard;
+export default SpaceshipsMoreCard;

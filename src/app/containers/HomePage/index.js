@@ -124,19 +124,19 @@ class HomePage extends React.Component {
             <tbody>
               <tr>
                 <td>
-                  <Box to="/explorer?type=planets" color={CONSTANTS.color.planets}>
+                  <Box to="/explorer/planets" color={CONSTANTS.color.planets}>
                     <i className="fa fa-globe" />
                     <span>Planets</span>
                   </Box>
                 </td>
                 <td>
-                  <Box to="/explorer?type=starships" color={CONSTANTS.color.starships}>
+                  <Box to="/explorer/starships" color={CONSTANTS.color.starships}>
                     <i className="fa fa-space-shuttle" />
                     <span>Spaceships</span>
                   </Box>
                 </td>
                 <td>
-                  <Box to="/explorer?type=vehicles" color={CONSTANTS.color.vehicles}>
+                  <Box to="/explorer/vehicles" color={CONSTANTS.color.vehicles}>
                     <i className="fa fa-car" />
                     <span>Vehicles</span>
                   </Box>
@@ -145,13 +145,13 @@ class HomePage extends React.Component {
               <tr>
                 <td />
                 <td>
-                  <Box to="/explorer?type=people" color={CONSTANTS.color.people}>
+                  <Box to="/explorer/people" color={CONSTANTS.color.people}>
                     <i className="fa fa-child" />
                     <span>People</span>
                   </Box>
                 </td>
                 <td>
-                  <Box to="/explorer?type=films" color={CONSTANTS.color.films}>
+                  <Box to="/explorer/films" color={CONSTANTS.color.films}>
                     <i className="fa fa-ticket" />
                     <span>Films</span>
                   </Box>
@@ -161,7 +161,7 @@ class HomePage extends React.Component {
                 <td />
                 <td />
                 <td>
-                  <Box to="/explorer?type=species" color={CONSTANTS.color.species}>
+                  <Box to="/explorer/species" color={CONSTANTS.color.species}>
                     <i className="fa fa-users" />
                     <span>Species</span>
                   </Box>
