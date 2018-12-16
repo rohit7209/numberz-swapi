@@ -177,10 +177,11 @@ class Explorer extends React.Component {
             </div>
           </div>
           <Hr />
-          {!this.props.explorer.requesting && this.state.list.length > 0 ?
+          {this.props.explorer.requesting ?
+            <Loader /> :
             <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
               {this.state.list.map(item => <Card key={item.url} displayMoreInfo={this.displayMoreInfoScreen} details={item} type={this.state.type} />)}
-            </div> : <Loader />
+            </div>
           }
         </Col2>
 
