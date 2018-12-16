@@ -13,8 +13,8 @@ ReactDOM.render(<Provider store={store}>
     <Layout>
       <Route exact path="/" component={HomePage} />
       <Route exact path="/explorer/:type" component={Explorer} />
-      <Route exact path="/cdn/numberz/index.html" component={HomePage} />
-      <Route exact path="/cdn/numberz/index.html/explorer/:type" component={Explorer} />
+      {/* <Route exact path="/cdn/numberz/index.html" component={HomePage} />
+      <Route exact path="/cdn/numberz/index.html/explorer/:type" component={Explorer} /> */}
     </Layout>
   </Router>
 </Provider >, document.getElementById('root'));
