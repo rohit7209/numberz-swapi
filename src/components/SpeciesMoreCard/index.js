@@ -117,60 +117,48 @@ const Btn = styled(Link) `
   }
 `;
 
-class SpeciesMoreCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const SpeciesMoreCard = ({ details }) =>
+  <Wrapper>
+    <BasicInfo style={{ color: CONSTANTS.color.species }}>
+      {details.name}<br />
+      <span><i className="fa fa-language" /> {details.language}</span>
+    </BasicInfo>
 
-  render() {
-    const details = this.props.details;
-    console.log('props:', details);
-    return (
-      <Wrapper>
-        <BasicInfo style={{ color: CONSTANTS.color.species }}>
-          {details.name}<br />
-          <span><i className="fa fa-language" /> {details.language}</span>
-        </BasicInfo>
+    <div style={{ display: 'flex', padding: '0px 50px', marginTop: '0px' }}>
+      <ColorInfo>
+        <div><ColorBox color={details.hair_colors} /><span>Hair</span></div>
+        <div><ColorBox color={details.skin_colors} /><span>Skin</span></div>
+        <div><ColorBox color={details.eye_colors} /><span>Eye</span></div>
+      </ColorInfo>
+      <InfoBar1>
+        <div>{details.average_height}<span>Cms</span></div>
+        <div>{details.average_lifespan}<span>Yrs</span></div>
+        <div><Btn to={`/explorer/planets?url=${details.homeworld}`}>Home World <i className="fa fa-external-link-square" /></Btn></div>
+      </InfoBar1>
+    </div>
 
-        <div style={{ display: 'flex', padding: '0px 50px', marginTop: '0px' }}>
-          <ColorInfo>
-            <div><ColorBox color={details.hair_colors} /><span>Hair</span></div>
-            <div><ColorBox color={details.skin_colors} /><span>Skin</span></div>
-            <div><ColorBox color={details.eye_colors} /><span>Eye</span></div>
-          </ColorInfo>
-          <InfoBar1>
-            <div>{details.average_height}<span>Cms</span></div>
-            <div>{details.average_lifespan}<span>Yrs</span></div>
-            <div><Btn to={`/explorer/planets?url=${details.homeworld}`}>Home World <i className="fa fa-external-link-square" /></Btn></div>
-          </InfoBar1>
-        </div>
+    <Table>
+      <tbody>
+        <tr>
+          {/* <td>climate: <span>{details.climate}</span></td> */}
+          <td>classification:</td><td> <span>{details.classification}</span></td>
+          <td>population:</td><td> <span>NA</span></td>
+        </tr>
+        <tr>
+          {/* <td>terrain: <span>{details.terrain}</span></td> */}
+          <td>designation:</td><td> <span>{details.designation}</span></td>
+          <td>language: </td><td><span>{details.language}</span></td>
+        </tr>
+      </tbody>
+    </Table>
 
-        <Table>
-          <tbody>
-            <tr>
-              {/* <td>climate: <span>{details.climate}</span></td> */}
-              <td>classification:</td><td> <span>{details.classification}</span></td>
-              <td>population:</td><td> <span>NA</span></td>
-            </tr>
-            <tr>
-              {/* <td>terrain: <span>{details.terrain}</span></td> */}
-              <td>designation:</td><td> <span>{details.designation}</span></td>
-              <td>language: </td><td><span>{details.language}</span></td>
-            </tr>
-          </tbody>
-        </Table>
-
-        <InfoBar2>
-          <LazyLink list={details.films} type="films" />
-          <LazyLink list={details.planets} type="planets" />
-          <LazyLink list={details.people} type="people" />
-        </InfoBar2>
-        <Footer />
-      </Wrapper>
-    );
-  }
-}
+    <InfoBar2>
+      <LazyLink list={details.films} type="films" />
+      <LazyLink list={details.planets} type="planets" />
+      <LazyLink list={details.people} type="people" />
+    </InfoBar2>
+    <Footer />
+  </Wrapper>;
 
 SpeciesMoreCard.propTypes = {};
 

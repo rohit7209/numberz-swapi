@@ -67,55 +67,43 @@ const Table = styled.table`
 
 `;
 
-class PlanetsCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const PlanetsCard = ({ details, displayMoreInfo}) =>
+  <Wrapper>
+    <BasicInfo>
+      {details.name}<br />
+      <span><i className="fa fa-users" /> {details.population}</span>
+    </BasicInfo>
 
-  render() {
-    const details = this.props.details;
-    // console.log('details::', details);
-    return (
-      <Wrapper>
-        <BasicInfo>
-          {details.name}<br />
-          <span><i className="fa fa-users" /> {details.population}</span>
-        </BasicInfo>
+    <Table style={{ padding: '0px 20px' }}>
+      <tbody>
+        <tr>
+          {/* <td>climate: <span>{details.climate}</span></td> */}
+          <td>gravity: <span>{details.gravity}</span></td>
+          <td>orbital period: <span>{details.orbital_period}</span></td>
+        </tr>
+        <tr>
+          {/* <td>terrain: <span>{details.terrain}</span></td> */}
+          <td>surface water: <span>{details.surface_water}</span></td>
+          <td>rotation period: <span>{details.rotation_period}</span></td>
+        </tr>
+      </tbody>
+    </Table>
 
-        <Table style={{ padding: '0px 20px' }}>
-          <tbody>
-            <tr>
-              {/* <td>climate: <span>{details.climate}</span></td> */}
-              <td>gravity: <span>{details.gravity}</span></td>
-              <td>orbital period: <span>{details.orbital_period}</span></td>
-            </tr>
-            <tr>
-              {/* <td>terrain: <span>{details.terrain}</span></td> */}
-              <td>surface water: <span>{details.surface_water}</span></td>
-              <td>rotation period: <span>{details.rotation_period}</span></td>
-            </tr>
-          </tbody>
-        </Table>
+    <InfoBar2>
+      <div>
+        {(details.films || []).length}<br /><span>films</span>
+      </div>
+      <div>
+        {(details.residents || []).length}<br /><span>residents</span>
+      </div>
+      <div>
+        {(details.starships || []).length}<br /><span>starships</span>
+      </div>
+    </InfoBar2>
 
-        <InfoBar2>
-          <div>
-            {(details.films || []).length}<br /><span>films</span>
-          </div>
-          <div>
-            {(details.residents || []).length}<br /><span>residents</span>
-          </div>
-          <div>
-            {(details.starships || []).length}<br /><span>starships</span>
-          </div>
-        </InfoBar2>
+    <Footer onClick={() => this.props.displayMoreInfo(details.url)}>View More</Footer>
 
-        <Footer onClick={() => this.props.displayMoreInfo(details.url)}>View More</Footer>
-
-      </Wrapper>
-    );
-  }
-}
+  </Wrapper>;
 
 PlanetsCard.propTypes = {
   displayMoreInfo: PropTypes.func.isRequired,

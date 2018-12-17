@@ -67,56 +67,43 @@ const Table = styled.table`
 
 `;
 
-class VehiclesCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
 
-  render() {
-    const details = this.props.details;
-    // console.log('details::', details);
-    return (
-      <Wrapper>
-        <BasicInfo>
-          {details.name}<br />
-          {/* <span>MODEL: {details.model}</span><br /> */}
-          <span><i className="fa fa-inr" /> {details.cost_in_credits}, {details.vehicle_class}</span>
-        </BasicInfo>
+const VehiclesCard = ({ details, displayMoreInfo }) =>
+  <Wrapper>
+    <BasicInfo>
+      {details.name}<br />
+      {/* <span>MODEL: {details.model}</span><br /> */}
+      <span><i className="fa fa-inr" /> {details.cost_in_credits}, {details.vehicle_class}</span>
+    </BasicInfo>
 
-        <Table style={{ padding: '0px 20px' }}>
-          <tbody>
-            <tr>
-              {/* <td>climate: <span>{details.climate}</span></td> */}
-              <td>cargo capacity: <span>{details.cargo_capacity}</span></td>
-              <td>consumables: <span>{details.consumables}</span></td>
-            </tr>
-            <tr>
-              {/* <td>terrain: <span>{details.terrain}</span></td> */}
-              <td>length: <span>{details.length}</span></td>
-              <td>max speed: <span>{details.max_atmosphering_speed}</span></td>
-            </tr>
-          </tbody>
-        </Table>
+    <Table style={{ padding: '0px 20px' }}>
+      <tbody>
+        <tr>
+          {/* <td>climate: <span>{details.climate}</span></td> */}
+          <td>cargo capacity: <span>{details.cargo_capacity}</span></td>
+          <td>consumables: <span>{details.consumables}</span></td>
+        </tr>
+        <tr>
+          {/* <td>terrain: <span>{details.terrain}</span></td> */}
+          <td>length: <span>{details.length}</span></td>
+          <td>max speed: <span>{details.max_atmosphering_speed}</span></td>
+        </tr>
+      </tbody>
+    </Table>
 
-        <InfoBar2>
-          <div>
-            {(details.pilots || []).length}<br /><span>pilots</span>
-          </div>
-          <div>
-            {details.crew}<br /><span>crew</span>
-          </div>
-          <div>
-            {details.passengers}<br /><span>passengers</span>
-          </div>
-        </InfoBar2>
-
-        <Footer onClick={() => this.props.displayMoreInfo(details.url)}>View More</Footer>
-
-      </Wrapper>
-    );
-  }
-}
+    <InfoBar2>
+      <div>
+        {(details.pilots || []).length}<br /><span>pilots</span>
+      </div>
+      <div>
+        {details.crew}<br /><span>crew</span>
+      </div>
+      <div>
+        {details.passengers}<br /><span>passengers</span>
+      </div>
+    </InfoBar2>
+    <Footer onClick={() => displayMoreInfo(details.url)}>View More</Footer>
+  </Wrapper>;
 
 VehiclesCard.propTypes = {
   displayMoreInfo: PropTypes.func.isRequired,

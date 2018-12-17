@@ -13,11 +13,7 @@ const Btn = styled.button`
 `;
 
 
-const Button = (props) => {
-  return (
-    <Btn {...props}>{props.children}</Btn>
-  );
-};
+const Button = (props) => <Btn {...props}>{props.children}</Btn>;
 
 Button.propTypes = {
   children: PropTypes.any,

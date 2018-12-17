@@ -61,50 +61,39 @@ const Table = styled.table`
 
 `;
 
-class PlanetsMoreCode extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const PlanetsMoreCode = ({ details }) =>
+  <Wrapper>
+    <BasicInfo style={{ color: CONSTANTS.color.planets }}>
+      {details.name}<br />
+      <span><i className="fa fa-users" /> {details.population}</span>
+    </BasicInfo>
 
-  render() {
-    const details = this.props.details;
-    return (
-      <Wrapper>
-        <BasicInfo style={{ color: CONSTANTS.color.planets }}>
-          {details.name}<br />
-          <span><i className="fa fa-users" /> {details.population}</span>
-        </BasicInfo>
+    <Table>
+      <tbody>
+        <tr>
+          <td>gravity:</td><td><span>{details.gravity}</span></td>
+          <td>orbital period:</td><td><span>{details.orbital_period}</span></td>
+        </tr>
+        <tr>
+          <td>climate:</td><td><span>{details.climate}</span></td>
+          <td>rotation period:</td><td><span>{details.rotation_period}</span></td>
+        </tr>
+        <tr>
+          <td>surface water:</td><td><span>{details.surface_water}</span></td>
+          <td>diameter:</td><td><span>{details.diameter}</span></td>
+        </tr>
+      </tbody>
+    </Table>
 
-        <Table>
-          <tbody>
-            <tr>
-              <td>gravity:</td><td><span>{details.gravity}</span></td>
-              <td>orbital period:</td><td><span>{details.orbital_period}</span></td>
-            </tr>
-            <tr>
-              <td>climate:</td><td><span>{details.climate}</span></td>
-              <td>rotation period:</td><td><span>{details.rotation_period}</span></td>
-            </tr>
-            <tr>
-              <td>surface water:</td><td><span>{details.surface_water}</span></td>
-              <td>diameter:</td><td><span>{details.diameter}</span></td>
-            </tr>
-          </tbody>
-        </Table>
+    <div style={{ padding: '0px 50px', color: CONSTANTS.color.planets }}><strong>Terrain: {details.terrain}</strong></div>
 
-        <div style={{ padding: '0px 50px', color: CONSTANTS.color.planets }}><strong>Terrain: {details.terrain}</strong></div>
-
-        <InfoBar2>
-          <LazyLink list={details.films} type="films" />
-          <LazyLink list={details.residents} type="people" />
-          <LazyLink list={details.starships} type="starships" />
-        </InfoBar2>
-        <Footer />
-      </Wrapper>
-    );
-  }
-}
+    <InfoBar2>
+      <LazyLink list={details.films} type="films" />
+      <LazyLink list={details.residents} type="people" />
+      <LazyLink list={details.starships} type="starships" />
+    </InfoBar2>
+    <Footer />
+  </Wrapper>;
 
 PlanetsMoreCode.propTypes = {};
 

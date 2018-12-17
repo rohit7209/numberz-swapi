@@ -84,54 +84,40 @@ const Footer = styled.div`
   cursor: pointer;
 `;
 
-class SpeciesCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const SpeciesCard = ({ details, displayMoreInfo }) =>
+  <Wrapper>
+    <BasicInfo style={{ color: CONSTANTS.color.species }}>
+      {details.name}<br />
+      <span><i className="fa fa-language" /> {details.language}</span>
+    </BasicInfo>
 
-  render() {
-    const details = this.props.details;
+    <div style={{ display: 'flex', padding: '0px 20px' }}>
+      <ColorInfo>
+        <div><ColorBox round color={details.hair_colors} /><span>Hair</span></div>
+        <div><ColorBox round color={details.skin_colors} /><span>Skin</span></div>
+        <div><ColorBox round color={details.eye_colors} /><span>Eye</span></div>
+      </ColorInfo>
+      <InfoBar1>
+        <div>{details.average_height}<span>Cms</span></div>
+        <div>{details.average_lifespan}<span>Yrs</span></div>
+      </InfoBar1>
+    </div>
 
-    // console.log('der::', details);
+    <InfoBar2>
+      <div>
+        {(details.films || []).length}<br /><span>films</span>
+      </div>
+      <div>
+        {(details.vehicles || []).length}<br /><span>vehicals</span>
+      </div>
+      <div>
+        {(details.starships || []).length}<br /><span>starships</span>
+      </div>
+    </InfoBar2>
 
-    return (
-      <Wrapper>
-        <BasicInfo style={{ color: CONSTANTS.color.species }}>
-          {details.name}<br />
-          <span><i className="fa fa-language" /> {details.language}</span>
-        </BasicInfo>
+    <Footer onClick={() => this.props.displayMoreInfo(details.url)} color={CONSTANTS.color.species}>View More</Footer>
 
-        <div style={{ display: 'flex', padding: '0px 20px' }}>
-          <ColorInfo>
-            <div><ColorBox round color={details.hair_colors} /><span>Hair</span></div>
-            <div><ColorBox round color={details.skin_colors} /><span>Skin</span></div>
-            <div><ColorBox round color={details.eye_colors} /><span>Eye</span></div>
-          </ColorInfo>
-          <InfoBar1>
-            <div>{details.average_height}<span>Cms</span></div>
-            <div>{details.average_lifespan}<span>Yrs</span></div>
-          </InfoBar1>
-        </div>
-
-        <InfoBar2>
-          <div>
-            {(details.films || []).length}<br /><span>films</span>
-          </div>
-          <div>
-            {(details.vehicles || []).length}<br /><span>vehicals</span>
-          </div>
-          <div>
-            {(details.starships || []).length}<br /><span>starships</span>
-          </div>
-        </InfoBar2>
-
-        <Footer onClick={() => this.props.displayMoreInfo(details.url)} color={CONSTANTS.color.species}>View More</Footer>
-
-      </Wrapper>
-    );
-  }
-}
+  </Wrapper>;
 
 SpeciesCard.propTypes = {
   displayMoreInfo: PropTypes.func.isRequired,

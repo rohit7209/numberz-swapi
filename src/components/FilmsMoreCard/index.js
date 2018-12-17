@@ -59,39 +59,28 @@ const OpeningCrawl = styled.div`
 `;
 
 
-class VehiclesMoreCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const VehiclesMoreCard = ({ details }) =>
+  <Wrapper>
+    <BasicInfo style={{ color: CONSTANTS.color.films }}>
+      {details.title}<br />
+      <span><i className="fa fa-film" /> {details.release_date.split('-').reverse().join('-')}</span><br />
+      <span><i className="fa fa-user" /> {details.producer}</span>
+    </BasicInfo>
 
-  render() {
-    const details = this.props.details;
-    return (
-      <Wrapper>
-        <BasicInfo style={{ color: CONSTANTS.color.films }}>
-          {details.title}<br />
-          <span><i className="fa fa-film" /> {details.release_date.split('-').reverse().join('-')}</span><br/>
-          <span><i className="fa fa-user" /> {details.producer}</span>
-        </BasicInfo>
+    <OpeningCrawl>
+      <div>OPENING CRAWL</div>
+      <div>{details.opening_crawl}</div>
+    </OpeningCrawl>
 
-        <OpeningCrawl>
-          <div>OPENING CRAWL</div>
-          <div>{details.opening_crawl}</div>
-        </OpeningCrawl>
-
-        <InfoBar2>
-          <LazyLink list={details.characters} type="people" />
-          <LazyLink list={details.planets} type="planets" />
-          <LazyLink list={details.species} type="species" />
-          <LazyLink list={details.starships} type="starships" />
-          <LazyLink list={details.vehicles} type="vehicles" />
-        </InfoBar2>
-        <Footer />
-      </Wrapper>
-    );
-  }
-}
+    <InfoBar2>
+      <LazyLink list={details.characters} type="people" />
+      <LazyLink list={details.planets} type="planets" />
+      <LazyLink list={details.species} type="species" />
+      <LazyLink list={details.starships} type="starships" />
+      <LazyLink list={details.vehicles} type="vehicles" />
+    </InfoBar2>
+    <Footer />
+  </Wrapper>;
 
 VehiclesMoreCard.propTypes = {};
 

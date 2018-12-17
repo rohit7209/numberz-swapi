@@ -80,49 +80,37 @@ const OpeningCrawl = styled.div`
   // overflow: hidden;
 `;
 
-class VehiclesCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const VehiclesCard = ({ details, displayMoreInfo }) =>
+  <Wrapper>
+    <BasicInfo>
+      {details.title}<br />
+      {/* <span>MODEL: {details.model}</span><br /> */}
+      <span><i className="fa fa-film" /> {details.release_date.split('-').reverse().join('-')}</span>
+    </BasicInfo>
 
-  render() {
-    const details = this.props.details;
-    // console.log('details::', details);
-    return (
-      <Wrapper>
-        <BasicInfo>
-          {details.title}<br />
-          {/* <span>MODEL: {details.model}</span><br /> */}
-          <span><i className="fa fa-film" /> {details.release_date.split('-').reverse().join('-')}</span>
-        </BasicInfo>
+    <OpeningCrawl>
+      <div>OPENING CRAWL</div>
+      <div>{details.opening_crawl}</div>
+    </OpeningCrawl>
 
-        <OpeningCrawl>
-          <div>OPENING CRAWL</div>
-          <div>{details.opening_crawl}</div>
-        </OpeningCrawl>
+    <InfoBar2>
+      <div>
+        {(details.characters || []).length}<br /><span>characters</span>
+      </div>
+      <div>
+        {(details.planets || []).length}<br /><span>planets</span>
+      </div>
+      <div>
+        {(details.species || []).length}<br /><span>species</span>
+      </div>
+      <div>
+        {(details.starships || []).length}<br /><span>starships</span>
+      </div>
+    </InfoBar2>
 
-        <InfoBar2>
-          <div>
-            {(details.characters || []).length}<br /><span>characters</span>
-          </div>
-          <div>
-            {(details.planets || []).length}<br /><span>planets</span>
-          </div>
-          <div>
-            {(details.species || []).length}<br /><span>species</span>
-          </div>
-          <div>
-            {(details.starships || []).length}<br /><span>starships</span>
-          </div>
-        </InfoBar2>
+    <Footer onClick={() => this.props.displayMoreInfo(details.url)}>View More</Footer>
 
-        <Footer onClick={() => this.props.displayMoreInfo(details.url)}>View More</Footer>
-
-      </Wrapper>
-    );
-  }
-}
+  </Wrapper>;
 
 VehiclesCard.propTypes = {
   displayMoreInfo: PropTypes.func.isRequired,

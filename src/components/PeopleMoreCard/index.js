@@ -80,44 +80,32 @@ const Wrapper = styled.div`
 `;
 
 
-class PeopleMoreCode extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const PeopleMoreCode = ({ details }) =>
+  <Wrapper>
+    <BasicInfo style={{ color: CONSTANTS.color.people }}>
+      {details.name}<br />
+      <span><i className="fa fa-birthday-cake" /> {details.birth_year}, {details.gender}</span>
+    </BasicInfo>
 
-  render() {
-    const details = this.props.details;
-    console.log('props:', details);
-    return (
-      <Wrapper>
-        <BasicInfo style={{ color: CONSTANTS.color.people }}>
-          {details.name}<br />
-          <span><i className="fa fa-birthday-cake" /> {details.birth_year}, {details.gender}</span>
-        </BasicInfo>
+    <div style={{ display: 'flex', padding: '0px 50px', marginTop: '20px' }}>
+      <ColorInfo>
+        <div><ColorBox color={details.hair_color} /><span>Hair</span></div>
+        <div><ColorBox color={details.skin_color} /><span>Skin</span></div>
+        <div><ColorBox color={details.eye_color} /><span>Eye</span></div>
+      </ColorInfo>
+      <InfoBar1>
+        <div>{details.height}<span>Cms</span></div>
+        <div>{details.mass}<span>Kgs</span></div>
+      </InfoBar1>
+    </div>
 
-        <div style={{ display: 'flex', padding: '0px 50px', marginTop: '20px' }}>
-          <ColorInfo>
-            <div><ColorBox color={details.hair_color} /><span>Hair</span></div>
-            <div><ColorBox color={details.skin_color} /><span>Skin</span></div>
-            <div><ColorBox color={details.eye_color} /><span>Eye</span></div>
-          </ColorInfo>
-          <InfoBar1>
-            <div>{details.height}<span>Cms</span></div>
-            <div>{details.mass}<span>Kgs</span></div>
-          </InfoBar1>
-        </div>
-
-        <InfoBar2>
-          <LazyLink list={details.films} type="films" />
-          <LazyLink list={details.vehicles} type="vehicles" />
-          <LazyLink list={details.starships} type="starships" />
-        </InfoBar2>
-        <Footer />
-      </Wrapper>
-    );
-  }
-}
+    <InfoBar2>
+      <LazyLink list={details.films} type="films" />
+      <LazyLink list={details.vehicles} type="vehicles" />
+      <LazyLink list={details.starships} type="starships" />
+    </InfoBar2>
+    <Footer />
+  </Wrapper>;
 
 PeopleMoreCode.propTypes = {};
 

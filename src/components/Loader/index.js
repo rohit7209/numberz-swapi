@@ -9,13 +9,9 @@ const Wrapper = styled.div`
   font-size: ${props => props.sm ? '10px' : 'auto'}
 `;
 
-const Loader = (props) => {
-  return (
-    <Wrapper sm={props.sm} className={props.className} style={{ ...props.style }}>
-      <i className="fa fa-circle-o-notch fa-spin fa-lg" />
-    </Wrapper>
-  );
-};
+const Loader = (props) => <Wrapper sm={props.sm} className={props.className} style={{ ...props.style }}>
+  <i className="fa fa-circle-o-notch fa-spin fa-lg" />
+</Wrapper>;
 
 Loader.propTypes = {
   style: PropTypes.object,

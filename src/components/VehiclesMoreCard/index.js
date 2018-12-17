@@ -86,48 +86,37 @@ const Block = styled.div`
   }
 `;
 
-class VehiclesMoreCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const VehiclesMoreCard = ({ details }) =>
+  <Wrapper>
+    <BasicInfo style={{ color: CONSTANTS.color.vehicles }}>
+      {details.name}<br />
+      <span><i className="fa fa-inr" /> {details.cost_in_credits}, {details.vehicle_class}</span><br />
+      <span><i className="fa fa-industry" /> {details.manufacturer}</span>
+    </BasicInfo>
 
-  render() {
-    const details = this.props.details;
-    return (
-      <Wrapper>
-        <BasicInfo style={{ color: CONSTANTS.color.vehicles }}>
-          {details.name}<br />
-          <span><i className="fa fa-inr" /> {details.cost_in_credits}, {details.vehicle_class}</span><br />
-          <span><i className="fa fa-industry" /> {details.manufacturer}</span>
-        </BasicInfo>
+    <Table>
+      <tbody>
+        <tr>
+          {/* <td>climate: <span>{details.climate}</span></td> */}
+          <td>cargo capacity:</td><td> <span>{details.cargo_capacity}</span></td>
+          <td>consumables:</td><td> <span>{details.consumables}</span></td>
+        </tr>
+        <tr>
+          {/* <td>terrain: <span>{details.terrain}</span></td> */}
+          <td>length:</td><td> <span>{details.length}</span></td>
+          <td>max speed: </td><td><span>{details.max_atmosphering_speed}</span></td>
+        </tr>
+      </tbody>
+    </Table>
 
-        <Table>
-          <tbody>
-            <tr>
-              {/* <td>climate: <span>{details.climate}</span></td> */}
-              <td>cargo capacity:</td><td> <span>{details.cargo_capacity}</span></td>
-              <td>consumables:</td><td> <span>{details.consumables}</span></td>
-            </tr>
-            <tr>
-              {/* <td>terrain: <span>{details.terrain}</span></td> */}
-              <td>length:</td><td> <span>{details.length}</span></td>
-              <td>max speed: </td><td><span>{details.max_atmosphering_speed}</span></td>
-            </tr>
-          </tbody>
-        </Table>
-
-        <InfoBar2>
-          <LazyLink list={details.pilots} type="people" />
-          <Block><div>CREW</div><span>{details.crew}</span></Block>
-          <Block><div>passengers</div><span>{details.passengers}</span></Block>
-          <LazyLink list={details.films} type="films" />
-        </InfoBar2>
-        <Footer />
-      </Wrapper>
-    );
-  }
-}
+    <InfoBar2>
+      <LazyLink list={details.pilots} type="people" />
+      <Block><div>CREW</div><span>{details.crew}</span></Block>
+      <Block><div>passengers</div><span>{details.passengers}</span></Block>
+      <LazyLink list={details.films} type="films" />
+    </InfoBar2>
+    <Footer />
+  </Wrapper>;
 
 VehiclesMoreCard.propTypes = {};
 
